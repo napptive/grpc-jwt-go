@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package jwt;
+option go_package = "github.com/napptive/grpc-jwt-go;grpc_jwt_go";
+
+import "jwt/entities.proto";
+
+// Secrets service providing access to available signing secrets that
+// permit to issue and validate JWT. This is specially useful for scenarios
+// where tokens are signed for different elements of the system using different
+// secrets. Delegated services are expected to have access to a single signing
+// secret while control-plane elements have access to all.
+service Secrets{
+    // Get a giving signing secret.
+    rpc Get(GetSecretRequest) returns (SecretResponse) {
+    }
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package jwt;
+option go_package = "github.com/napptive/grpc-jwt-go;grpc_jwt_go";
+
+// GetSecretRequest message with the information required to retrieve a
+// JWT signing secret.
+message GetSecretRequest {
+    // SecretID with the secret unique identifier. For control-plane elements
+    // this is intended to match the zone identifier, but may differ in other
+    // scenarios. Empty secret identifiers are expected to return the default
+    // signing secret.
+    string secret_id = 1;
+}
+
+// SecretResponse with the retrieved secret.
+message SecretResponse {
+    // JWTSecret with the secret that signs operational JWT.
+    string jwt_secret = 1;
+}
